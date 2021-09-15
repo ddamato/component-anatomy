@@ -1,0 +1,28 @@
+{
+  "name": "component-anatomy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "type": "module",
+  "browser": "dist/index.iife.js",
+  "scripts": {
+    "build": "rollup src/index.js --file dist/index.iife.js --format iife -p 'postcss={ inject: false }'",
+    "dev": "watch-exec -w src/ -c 'npm run build'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ddamato/component-anatomy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ddamato/component-anatomy/issues"
+  },
+  "homepage": "https://github.com/ddamato/component-anatomy#readme",
+  "devDependencies": {
+    "rollup": "^2.56.3",
+    "rollup-plugin-postcss": "^4.0.1",
+    "watch-exec": "^1.2.2"
+  }
+}

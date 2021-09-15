@@ -1,0 +1,62 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+#component-anatomy {
+  display: inline-flex;
+}
+
+:host([orientation='vertical']) #component-anatomy {
+  flex-direction: column;
+}
+
+#area {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  list-style: none;
+  counter-reset: anatomy;
+}
+
+#area li:before {  
+  content: counter(anatomy);
+  counter-increment: anatomy;
+}
+
+#pins {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  inset: 0;
+}
+
+#pins li {
+  position: absolute;
+  border: 3px solid var(--component-anatomy--pin-bg, red);
+  background: var(--component-anatomy--pin-bg, red);
+  color: var(--component-anatomy--pin-fg, white);
+  transform: translate(-50%, -50%);
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#pins li[aria-current] {
+  border-color: var(--component-anatomy--current, darkorange);
+}
+
+:host(:not([edit])) #pins:hover li {
+  opacity: 0;
+}
+
+#list {
+  width: max-content;
+}
+
+#list li:not(:last-child) {
+  margin-bottom: .5em;
+}
