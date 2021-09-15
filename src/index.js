@@ -56,8 +56,9 @@ class ComponentAnatomy extends HTMLElement {
     item.setAttribute('tabIndex', Number(this.edit) - 1);
   }
 
-  _blur(index) {
-    this._$pins.children[index].removeAttribute('aria-current');
+  _blur(index, update) {
+    this._$pins.children[index] && this._$pins.children[index].removeAttribute('aria-current');
+    update && this._commit(index);
   }
 
   _clear() {
@@ -73,22 +74,13 @@ class ComponentAnatomy extends HTMLElement {
     this.definitions = [].concat(this.definitions, { x, y, term: 'example term' }).filter(Boolean);
   }
 
-  _commit({ target }) {
-    const index = this._index(target);
-    if (!index) return;
-    if (target.textContent.trim()) {
-      this.update(index, { term: target.textContent });
+  _commit(index) {
+    const { textContent } = this._$list.children[index];
+    if (textContent.trim()) {
+      this.update(index, { term: textContent });
     } else {
       this.remove(index);
     }
-  }
-
-  _createPin(style, index) {
-    const $pin = document.createElement('li');
-    Object.assign($pin.style, style);
-    $pin.setAttribute('aria-describedby', `item-${index}`);
-    $pin.tabIndex = 0;
-    this._$pins.appendChild($pin);
   }
 
   _createDescription(term, index) {
@@ -100,9 +92,17 @@ class ComponentAnatomy extends HTMLElement {
     $term.addEventListener('mouseenter', () => this._focus(index));
     $term.addEventListener('mouseleave', () => this._blur(index));
     $term.addEventListener('focus', () => this._focus(index));
-    $term.addEventListener('blur', () => this._blur(index));
+    $term.addEventListener('blur', () => this._blur(index, true));
 
     this._$list.appendChild($term);
+  }
+
+  _createPin(style, index) {
+    const $pin = document.createElement('li');
+    Object.assign($pin.style, style);
+    $pin.setAttribute('aria-describedby', `item-${index}`);
+    $pin.tabIndex = 0;
+    this._$pins.appendChild($pin);
   }
 
   _edit() {
