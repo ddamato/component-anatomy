@@ -53,7 +53,7 @@
 }
 
 #pins li[aria-current] {
-  border-color: var(--component-anatomy--current, darkorange);
+  border-color: var(--component-anatomy--pin-hl, darkorange);
 }
 
 :host(:not([edit])) #pins:hover li {
