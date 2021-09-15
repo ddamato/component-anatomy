@@ -1,18 +1,13 @@
-import styles from './styles.css';
+import html from './template.html';
+import css from './styles.css';
 
 class ComponentAnatomy extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.innerHTML = `
-      <style type="text/css">${styles}</style>
-      <div id="component-anatomy">
-        <figure id="area">
-          <slot id="slot"></slot>
-          <ol id="pins"></ol>
-        </figure>
-        <ol id="list"></ol>
-      </div>
+      <style type="text/css">${css}</style>
+      ${html}
     `;
 
     ['area', 'pins', 'slot', 'list']

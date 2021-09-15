@@ -6,7 +6,7 @@
   "type": "module",
   "browser": "dist/index.iife.js",
   "scripts": {
-    "build": "rollup src/index.js --file dist/index.iife.js --format iife -p 'postcss={ inject: false }'",
+    "build": "rollup src/index.js --file dist/index.iife.js --format iife -p html -p 'postcss={ inject: false }' -p terser",
     "dev": "watch-exec -w src/ -c 'npm run build'"
   },
   "repository": {
@@ -22,7 +22,9 @@
   "homepage": "https://github.com/ddamato/component-anatomy#readme",
   "devDependencies": {
     "rollup": "^2.56.3",
+    "rollup-plugin-html": "^0.2.1",
     "rollup-plugin-postcss": "^4.0.1",
+    "rollup-plugin-terser": "^7.0.2",
     "watch-exec": "^1.2.2"
   }
 }
