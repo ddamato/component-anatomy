@@ -127,7 +127,8 @@ class ComponentAnatomy extends HTMLElement {
 
   get definitions() {
     try {
-      return JSON.parse(window.atob(this.getAttribute('definitions')));
+      const result = JSON.parse(window.atob(this.getAttribute('definitions')));
+      return [].concat(result).filter(Boolean);
     } catch (err) {
       return [];
     };
