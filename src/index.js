@@ -53,12 +53,10 @@ class ComponentAnatomy extends HTMLElement {
     } else {
       item.removeAttribute('contentEditable');
     }
-    item.setAttribute('tabIndex', Number(this.edit) - 1);
   }
 
-  _blur(index, update) {
+  _blur(index) {
     this._$pins.children[index] && this._$pins.children[index].removeAttribute('aria-current');
-    update && this._commit(index);
   }
 
   _clear() {
@@ -92,7 +90,7 @@ class ComponentAnatomy extends HTMLElement {
     $term.addEventListener('mouseenter', () => this._focus(index));
     $term.addEventListener('mouseleave', () => this._blur(index));
     $term.addEventListener('focus', () => this._focus(index));
-    $term.addEventListener('blur', () => this._blur(index, true));
+    $term.addEventListener('blur', () => this._commit(index));
 
     this._$list.appendChild($term);
   }
