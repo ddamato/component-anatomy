@@ -28,8 +28,9 @@ class ComponentAnatomy extends HTMLElement {
 
   /** Public methods */
 
-  create({ x, y, term }, index) {
+  create({ x, y, term }) {
     if (!x || !y || !term) return;
+    const index = this._$list.children.length;
     this._createPin({ left: x, top: y }, index);
     this._createDescription(term, index);
     return this;
