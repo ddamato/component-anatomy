@@ -40,6 +40,12 @@ The content within the tag could be anything, even a DOM element like another co
 
 When adding a new component to the page, no indicators will appear. You'll need to update the component with the `edit` attribute in order to allow editing. When in edit mode, you can click parts of the figure to create dots and describe the feature in the numbered list that appears.
 
+```html
+<component-anatomy edit>
+  <img src="https://picsum.photos/500/300"/>
+</component-anatomy>
+```
+
 Once you've completed editing, remove the `edit` attribute and copy the resulting HTML; specifically the data left in the `definitions` attribute. This describes your anatomy to be rendered the same way each time the component is loaded, assuming the content within the tags is the same.
 
 ```html
