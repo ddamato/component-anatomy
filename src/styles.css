@@ -72,6 +72,14 @@
   display: none;
 }
 
+#list li {
+  cursor: pointer;
+}
+
+#list li[contentEditable] {
+  cursor: text;
+}
+
 #list li:not(:last-child) {
   margin-bottom: .5em;
 }
