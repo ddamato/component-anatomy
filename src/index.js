@@ -56,7 +56,12 @@ class ComponentAnatomy extends HTMLElement {
   }
 
   _blur(index) {
-    this._$pins.children[index] && this._$pins.children[index].removeAttribute('aria-current');
+    const { textContent } = this._$list.children[index];
+    if (textContent.trim()) {
+      this.update(index, { term: textContent });
+    } else {
+      this.remove(index);
+    }
   }
 
   _clear() {
@@ -72,25 +77,15 @@ class ComponentAnatomy extends HTMLElement {
     this.definitions = [].concat(this.definitions, { x, y, term: 'example term' }).filter(Boolean);
   }
 
-  _commit(index) {
-    const { textContent } = this._$list.children[index];
-    if (textContent.trim()) {
-      this.update(index, { term: textContent });
-    } else {
-      this.remove(index);
-    }
-  }
-
   _createDescription(term, index) {
     const $term = document.createElement('li');
     $term.textContent = term;
     this._attributes($term);
     $term.id = `item-${index}`;
 
-    $term.addEventListener('mouseenter', () => this._focus(index));
-    $term.addEventListener('mouseleave', () => this._blur(index));
-    $term.addEventListener('focus', () => this._focus(index));
-    $term.addEventListener('blur', () => this._commit(index));
+    $term.addEventListener('mouseenter', () => this._mouseenter(index));
+    $term.addEventListener('mouseleave', () => this._mouseleave(index));
+    $term.addEventListener('blur', () => this._blur(index));
 
     this._$list.appendChild($term);
   }
@@ -107,13 +102,17 @@ class ComponentAnatomy extends HTMLElement {
     [...this._$list.children].forEach(this._attributes, this);
   }
 
-  _focus(index) {
-    this._$pins.children[index].setAttribute('aria-current', '');
-  }
-
   _index(target) {
     if (target === this._$list) return;
     return [...this._$list.children].indexOf(target);
+  }
+
+  _mouseenter(index) {
+    this._$pins.children[index].setAttribute('aria-current', '');
+  }
+
+  _mouseleave(index) {
+    this._$pins.children[index].removeAttribute('aria-current');
   }
   
   _render() {
