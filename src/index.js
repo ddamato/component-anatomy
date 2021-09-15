@@ -75,8 +75,7 @@ class ComponentAnatomy extends HTMLElement {
     if (!this.edit) return;
     const { offsetWidth, offsetHeight } = this._$pins;
     const [x, y] = [ offsetX / offsetWidth, offsetY / offsetHeight ].map(v => `${Math.round(v * 100)}%`);
-    const term = this.getAttribute('placeholder') || 'placeholder';
-    this.definitions = this.definitions.concat({ x, y, term });
+    this.definitions = this.definitions.concat({ x, y, term: this.placeholder });
   }
 
   _createDescription(term, index) {
@@ -152,6 +151,30 @@ class ComponentAnatomy extends HTMLElement {
       this.setAttribute('edit', '');
     } else {
       this.removeAttribute('edit');
+    }
+  }
+
+  get placeholder() {
+    return this.getAttribute('placeholder') || 'placeholder';
+  }
+
+  set placeholder(value) {
+    if (value) {
+      this.setAttribute('placeholder', '');
+    } else {
+      this.removeAttribute('placeholder');
+    }
+  }
+
+  get orientation() {
+    return this.getAttribute('orientation') || 'horizontal';
+  }
+
+  set orientation(value) {
+    if (value) {
+      this.setAttribute('orientation', '');
+    } else {
+      this.removeAttribute('orientation');
     }
   }
 }
