@@ -97,8 +97,7 @@ class ComponentAnatomy extends HTMLElement {
   }
 
   _focus({ target }) {
-    const index = this._index(target);
-    this._$pins.children[index] && this._$pins.children[index].setAttribute('aria-current', '');
+    this._$pins.children[this._index(target)].setAttribute('aria-current', '');
   }
 
   _index(target) {
@@ -122,7 +121,7 @@ class ComponentAnatomy extends HTMLElement {
 
   set definitions(value) {
     if (!value || !value.length) {
-      return this.removeAttribute('definitions');
+      this.removeAttribute('definitions');
     }
 
     if (typeof value === 'object') {
