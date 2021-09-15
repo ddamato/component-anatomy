@@ -33,8 +33,8 @@ class ComponentAnatomy extends HTMLElement {
   /** Public methods */
 
   create({ x, y, term }) {
-    if (isNaN(x) || isNaN(y) || !term) return;
-    this._createPin(`${x}%`, `${y}%`);
+    if (!x || !y || !term) return;
+    this._createPin(x, y);
     this._createDescription(term);
     return this;
   }
@@ -64,7 +64,7 @@ class ComponentAnatomy extends HTMLElement {
   _click({ offsetX, offsetY }) {
     if (!this.edit) return;
     const { offsetWidth, offsetHeight } = this._$pins;
-    const [x, y] = [ offsetX / offsetWidth, offsetY / offsetHeight ].map(v => Math.round(v * 100));
+    const [x, y] = [ offsetX / offsetWidth, offsetY / offsetHeight ].map(v => `${Math.round(v * 100)}%`);
     this.definitions = [].concat(this.definitions, { x, y, term: 'example term' }).filter(Boolean);
   }
 
@@ -114,7 +114,7 @@ class ComponentAnatomy extends HTMLElement {
 
   get definitions() {
     try {
-      return JSON.parse(this.getAttribute('definitions'));
+      return JSON.parse(window.atob(this.getAttribute('definitions')));
     } catch (err) {
       return [];
     };
@@ -126,8 +126,7 @@ class ComponentAnatomy extends HTMLElement {
     }
 
     if (typeof value === 'object') {
-      value = JSON.stringify(value);
-      this.setAttribute('definitions', value);
+      this.setAttribute('definitions', window.btoa(JSON.stringify(value)));
     }
   }
 

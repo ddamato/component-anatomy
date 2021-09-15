@@ -40,24 +40,27 @@
 
 #pins li {
   position: absolute;
-  border: 3px solid var(--component-anatomy--pin-bg, red);
-  background: var(--component-anatomy--pin-bg, red);
+  border: .1em solid var(--component-anatomy--pin-bg, deeppink);
+  background: var(--component-anatomy--pin-bg, deeppink);
   color: var(--component-anatomy--pin-fg, white);
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   width: 1.5em;
   height: 1.5em;
   border-radius: 1.5em;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: .218s ease;
 }
 
 #pins li[aria-current] {
-  border-color: var(--component-anatomy--pin-hl, darkorange);
+  border-color: var(--component-anatomy--pin-hl, currentColor);
+  transform: translate(-50%, -50%) scale(1.2);
 }
 
 :host(:not([edit])) #pins:hover li {
-  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.2);
+  color: transparent;
 }
 
 #list {
