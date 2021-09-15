@@ -74,7 +74,8 @@ class ComponentAnatomy extends HTMLElement {
     if (!this.edit) return;
     const { offsetWidth, offsetHeight } = this._$pins;
     const [x, y] = [ offsetX / offsetWidth, offsetY / offsetHeight ].map(v => `${Math.round(v * 100)}%`);
-    this.definitions = [].concat(this.definitions, { x, y, term: this.getAttribute('placeholder') || 'placeholder' }).filter(Boolean);
+    const term = this.getAttribute('placeholder') || 'placeholder';
+    this.definitions = [].concat(this.definitions, { x, y, term }).filter(Boolean);
   }
 
   _createDescription(term, index) {
