@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+:host {
+  display: inline-block;
+}
+
 #component-anatomy {
   display: inline-flex;
 }
@@ -17,6 +21,9 @@
   position: relative;
   list-style: none;
   counter-reset: anatomy;
+  align-self: center;
+  flex-shrink: 0;
+  margin-bottom: auto;
 }
 
 #area li:before {  
@@ -54,8 +61,12 @@
 }
 
 #list {
-  width: max-content;
-  padding-inline-start: 2.5em;
+  margin: 0;
+  padding: .5em 2.5em;
+}
+
+#list:empty {
+  display: none;
 }
 
 #list li:not(:last-child) {
