@@ -38,7 +38,7 @@ The content within the tag could be anything, even a DOM element like another co
 
 ## Edit Mode
 
-When adding a new component to the page, no indicators will appear. You'll need to update the component with the `edit` attribute in order to allow editing. When in edit mode, you can click parts of the figure to create dots and describe the feature in the numbered list that appears.
+When adding a new component to the page, no indicators will appear. You'll need to update the component with the `edit` attribute in order to allow editing. When in edit mode, you can click parts of the figure to create dots (markers) and describe the feature in the numbered list that appears. The dots will not scale while in this mode.
 
 ```html
 <component-anatomy edit>
@@ -54,7 +54,11 @@ Once you've completed editing, remove the `edit` attribute and copy the resultin
 </component-anatomy>
 ```
 
-If you clear the description entirely, the marker will be removed.
+## Additional Features
+
+- The dots will scale down in size when the figure is hovered; reducing the visual obstruction they would cause at normal size.
+- You can hover any numbered list item to highlight the corresponding marker. This also occurs in edit mode.
+- If you clear the description entirely in edit mode, the marker will be removed.
 
 ## Manipulating Definitions
 
@@ -101,13 +105,13 @@ You must set a new array of `definitions` to re-render. Simply mutating the curr
 
 ## Accessibility
 
-Each marker is tabbable and `describedby` an `id` that references the related item in the numbered list. When a numbered item is hovered, `aria-current` is applied to the marker.
+Each marker is tabbable and `aria-describedby` an `id` that references the related item in the numbered list. When a numbered item is hovered, `aria-current` is applied to the marker.
 
 [Edit Mode](#edit-mode) is less accessible; the descriptions aren't tabbable. This is due to the re-render that occurs on blur of the description and focus is lost.
 
 ## Customizing
 
-Font styles are inherited from the components ancestors. Changing the font attributes is as simple as changing them on the containing element or higher up. A `<ol/>` is used to display the list items; pay attention to the alignment of the numbers here. Monospaced fonts might look better as the list is aligned to the bullet, not to the left.
+Font styles are inherited from the components' ancestors. Changing the font attributes is as simple as changing them on the containing element or higher up. A `<ol/>` is used to display the list items; pay attention to the alignment of the numbers here. Monospaced fonts might look better as the list is aligned to the bullet, not to the left.
 
 The text color for the numbered list items is also inherited. Marker colors can be changed using CSS Custom Properties:
 
