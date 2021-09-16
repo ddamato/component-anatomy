@@ -1,6 +1,6 @@
 import html from './template.html';
 import css from './styles.css';
-class ComponentAnatomy extends HTMLElement {
+class ComponentAnatomy extends window.HTMLElement {
 
   /** Lifecycle methods */
 
@@ -33,11 +33,9 @@ class ComponentAnatomy extends HTMLElement {
     return this;
   }
 
-  create({ x, y, term }) {
-    if (!x || !y || !term) return;
-    const index = this._$list.children.length;
-    this._createPin({ left: x, top: y }, index);
-    this._createDescription(term, index);
+  create(payload) {
+    if (!payload.x || !payload.y || !payload.term) return;
+    this.definitions = this.definitions.concat(payload);
     return this;
   }
 
@@ -82,6 +80,12 @@ class ComponentAnatomy extends HTMLElement {
     this.definitions = this.definitions.concat({ x, y, term: this.placeholder });
   }
 
+  _create({ x, y, term }) {
+    const index = this._$list.children.length;
+    this._createPin({ left: x, top: y }, index);
+    this._createDescription(term, index);
+  }
+
   _createDescription(term, index) {
     const $term = document.createElement('li');
     $term.textContent = term;
@@ -117,7 +121,7 @@ class ComponentAnatomy extends HTMLElement {
   
   _render() {
     this._clear();
-    this.definitions.forEach(this.create, this);
+    this.definitions.forEach(this._create, this);
   }
 
   /** Getters/Setters */
@@ -134,9 +138,7 @@ class ComponentAnatomy extends HTMLElement {
   set definitions(value) {
     if (!value || !value.length) {
       this.removeAttribute('definitions');
-    }
-
-    if (typeof value === 'object') {
+    } else if (Array.isArray(value)) {
       this.setAttribute('definitions', window.btoa(JSON.stringify(value)));
     }
   }
