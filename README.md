@@ -81,6 +81,13 @@ anatomy.create({
 });
 ```
 
+You may also clear all of the definitions with one command.
+
+```js
+const anatomy = document.querySelector('component-anatomy');
+anatomy.clear(); // Clears all items
+```
+
 You can also adjust the `definitions` array directly with varying degrees of freedom.
 
 ```js

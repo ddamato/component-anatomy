@@ -28,6 +28,11 @@ class ComponentAnatomy extends HTMLElement {
 
   /** Public methods */
 
+  clear() {
+    this.definitions = [];
+    return this;
+  }
+
   create({ x, y, term }) {
     if (!x || !y || !term) return;
     const index = this._$list.children.length;
