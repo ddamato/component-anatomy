@@ -105,9 +105,9 @@ Each marker is tabbable and `describedby` an `id` that references the related it
 
 ## Customizing
 
-Font styles are inherited from the components ancestors. Changing the font attributes is as simple as changing them on the containing element or higher up. This also includes the text color for the numbered list items.
+Font styles are inherited from the components ancestors. Changing the font attributes is as simple as changing them on the containing element or higher up. A `<ol/>` is used to display the list items; pay attention to the alignment of the numbers here. Monospaced fonts might look better as the list is aligned to the bullet, not to the left.
 
-Marker colors can be changed using CSS Custom Properties
+The text color for the numbered list items is also inherited. Marker colors can be changed using CSS Custom Properties:
 
 | Property | Description |
 | -------- | ----------- |
