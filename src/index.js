@@ -68,7 +68,6 @@ class ComponentAnatomy extends HTMLElement {
   _clear() {
     this._$pins.innerHTML = '';
     this._$list.innerHTML = '';
-    return this;
   }
 
   _click({ offsetX, offsetY }) {
