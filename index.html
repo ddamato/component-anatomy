@@ -2,15 +2,63 @@
 <html lang="en">
   <head>
     <title>Example page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
     <style>
       :root { --component-anatomy--pin-bg: purple; --component-anatomy--pin-hl: yellow; }
-      body { font-family: monospace; font-size: 1.5rem; text-align: center; }
+      body { font-family: Prompt, sans-serif; font-size: 1.5rem; }
+      h1 { text-align: center; }
+      section { 
+        max-width: 900px;
+        margin: 1rem auto;
+        border-top: 1px solid #ddd;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
     </style>
     <script src="dist/index.iife.js" defer></script>
   </head>
   <body>
-    <component-anatomy edit orientation="vertical">
-      <img src="https://picsum.photos/200/300"/>
-    </component-anatomy>
+    <h1>
+      <a href="https://github.com/ddamato/component-anatomy">&lt;component-anatomy/&gt;</a>
+    </h1>
+    <section>
+      <h2>Use with an image (edit off)</h2>
+      <component-anatomy definitions="W3sieCI6IjIwJSIsInkiOiIyNSUiLCJ0ZXJtIjoiVG9wIGxlZnQifSx7IngiOiI3MSUiLCJ5IjoiNTYlIiwidGVybSI6IkJvdHRvbSByaWdodCJ9XQ==">
+        <img src="https://picsum.photos/500/300"/>
+      </component-anatomy>
+    </section>
+
+    <section>
+      <h2>Use with a component (edit off)</h2>
+      <component-anatomy definitions="W3sieCI6IjY0JSIsInkiOiI1MyUiLCJ0ZXJtIjoiQnV0dG9uIHRleHQifV0=">
+        <div style="padding: 2rem">
+          <button type="button">Click me</button>
+        </div>
+      </component-anatomy>
+    </section>
+
+    <section>
+      <h2>Turn on editing</h2>
+      <component-anatomy edit definitions="W3sieCI6IjQ5JSIsInkiOiIxMiUiLCJ0ZXJtIjoiVG9wIGNlbnRlciJ9LHsieCI6IjQ5JSIsInkiOiI4MSUiLCJ0ZXJtIjoiQm90dG9tIGNlbnRlciJ9XQ==">
+        <img src="https://picsum.photos/500/300"/>
+      </component-anatomy>
+    </section>
+
+    <section>
+      <h2>Change orientation (edit on)</h2>
+      <component-anatomy edit orientation="vertical" definitions="W3sieCI6IjQwJSIsInkiOiIyMSUiLCJ0ZXJtIjoiUG9pbnQgMSJ9LHsieCI6IjYzJSIsInkiOiI0OSUiLCJ0ZXJtIjoiUG9pbnQgMiJ9LHsieCI6IjIxJSIsInkiOiI2MiUiLCJ0ZXJtIjoiUG9pbnQgMyJ9XQ">
+        <img src="https://picsum.photos/500/300"/>
+      </component-anatomy>
+    </section>
+
+    <section>
+      <h2>Change placeholder (edit on)</h2>
+      <component-anatomy edit placeholder="My example">
+        <img src="https://picsum.photos/500/300"/>
+      </component-anatomy>
+    </section>
   </body>
 </html>

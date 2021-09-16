@@ -102,3 +102,15 @@ You must set a new array of `definitions` to re-render. Simply mutating the curr
 Each marker is tabbable and `describedby` an `id` that references the related item in the numbered list. When a numbered item is hovered, `aria-current` is applied to the marker.
 
 [Edit Mode](#edit-mode) is less accessible; the descriptions aren't tabbable. This is due to the re-render that occurs on blur of the description and focus is lost.
+
+## Customizing
+
+Font styles are inherited from the components ancestors. Changing the font attributes is as simple as changing them on the containing element or higher up. This also includes the text color for the numbered list items.
+
+Marker colors can be changed using CSS Custom Properties
+
+| Property | Description |
+| -------- | ----------- |
+| `--component-anatomy--pin-bg` | Background of the marker |
+| `--component-anatomy--pin-fg` | Foreground of the marker |
+| `--component-anatomy--pin-hl` | Border that appears when list item is hovered |

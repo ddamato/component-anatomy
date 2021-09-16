@@ -74,6 +74,7 @@
 
 #list li {
   cursor: pointer;
+  text-align: start;
 }
 
 #list li[contentEditable] {
