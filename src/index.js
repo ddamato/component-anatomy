@@ -162,7 +162,7 @@ class ComponentAnatomy extends window.HTMLElement {
 
   set placeholder(value) {
     if (value) {
-      this.setAttribute('placeholder', '');
+      this.setAttribute('placeholder', value);
     } else {
       this.removeAttribute('placeholder');
     }
@@ -173,8 +173,9 @@ class ComponentAnatomy extends window.HTMLElement {
   }
 
   set orientation(value) {
-    if (value) {
-      this.setAttribute('orientation', '');
+    const orientations = ['horizontal', 'vertical'];
+    if (value && orientations.includes(value)) {
+      this.setAttribute('orientation', value);
     } else {
       this.removeAttribute('orientation');
     }
