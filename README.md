@@ -1,4 +1,4 @@
-# `<component-anatomy/>`
+# [`<component-anatomy/>`](https://ddamato.github.io/component-anatomy/)
 
 A native web-component which can identify parts of a figure; expected to be used in documentation pages to name pieces of a component.
 
