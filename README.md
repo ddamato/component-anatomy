@@ -54,6 +54,8 @@ Once you've completed editing, remove the `edit` attribute and copy the resultin
 </component-anatomy>
 ```
 
+If you clear the description entirely, the marker will be removed.
+
 ## Manipulating Definitions
 
 The `definitions` attribute value is an encoded JSON string. You can potentially update this yourself through JavaScript. For example, if you are storing the examples in a database or generating your own through some computed process. **Manipulating this way isn't advised** but it is possible.
