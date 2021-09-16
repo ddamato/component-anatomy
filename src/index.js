@@ -103,11 +103,6 @@ class ComponentAnatomy extends HTMLElement {
     [...this._$list.children].forEach(this._attributes, this);
   }
 
-  _index(target) {
-    if (target === this._$list) return;
-    return [...this._$list.children].indexOf(target);
-  }
-
   _mouseenter(index) {
     this._$pins.children[index].setAttribute('aria-current', '');
   }
