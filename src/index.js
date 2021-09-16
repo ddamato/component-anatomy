@@ -34,8 +34,9 @@ class ComponentAnatomy extends window.HTMLElement {
   }
 
   create(payload) {
-    if (!payload.x || !payload.y || !payload.term) return;
-    this.definitions = this.definitions.concat(payload);
+    if (['x', 'y', 'term'].every(key => key in payload)) {
+      this.definitions = this.definitions.concat(payload);
+    }
     return this;
   }
 
@@ -77,7 +78,7 @@ class ComponentAnatomy extends window.HTMLElement {
     if (!this.edit) return;
     const { offsetWidth, offsetHeight } = this._$pins;
     const [x, y] = [ offsetX / offsetWidth, offsetY / offsetHeight ].map(v => `${Math.round(v * 100)}%`);
-    this.definitions = this.definitions.concat({ x, y, term: this.placeholder });
+    this.create({ x, y, term: this.placeholder });
   }
 
   _create({ x, y, term }) {
