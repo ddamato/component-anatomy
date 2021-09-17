@@ -92,17 +92,21 @@ describe('<component-anatomy/>', function () {
   it('should create links using markdown', function () {
     const term = 'Button text with [a link](#link) to a place';
     anatomy.create({ x:'64%', y:'53%', term });
+    const item = anatomy.shadowRoot.querySelector('#list li');
     const link = anatomy.shadowRoot.querySelector('#list li a');
     expect(link).to.exist;
     expect(link.getAttribute('href')).to.equal('#link');
     expect(link.textContent).to.equal('a link');
+    expect(item.innerHTML).to.equal('Button text with <a href="#link">a link</a> to a place');
   });
 
   it('should not render html', function () {
     const term = 'Button text with <strong>bold</strong> wording';
     anatomy.create({ x:'64%', y:'53%', term });
+    const item = anatomy.shadowRoot.querySelector('#list li');
     const bold = anatomy.shadowRoot.querySelector('#list li strong');
     expect(bold).to.not.exist;
+    expect(item.innerHTML).to.equal('Button text with &lt;strong&gt;bold&lt;/strong&gt; wording');
   });
 });
 

@@ -131,16 +131,11 @@ class ComponentAnatomy extends window.HTMLElement {
       const { length } = match[0];
       node = node.splitText(match.index - pointer);
       node = node.splitText(length);
+      const a = document.createElement('a');
+      Object.assign(a, match.groups);
+      parent.replaceChild(a, node.previousSibling);
       return match.index + length;
     }, 0);
-
-    [...parent.childNodes].forEach(n => {
-      const result = LINK_REGEX.exec(n.data);
-      if (!result) return;
-      const a = document.createElement('a');
-      Object.assign(a, result.groups);
-      n.parentNode.replaceChild(a, n);
-    });
   }
   
   _render() {
