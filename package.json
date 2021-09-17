@@ -1,6 +1,6 @@
 {
   "name": "component-anatomy",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Identify parts of a figure",
   "main": "src/index.js",
   "browser": "dist/index.iife.js",
