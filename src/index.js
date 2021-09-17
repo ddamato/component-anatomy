@@ -2,6 +2,7 @@ import html from './template.html';
 import css from './styles.css';
 
 const LINK_REGEX = /\[(?<textContent>[^\]]+)\]\((?<href>[^\)]+)\)/g;
+
 class ComponentAnatomy extends window.HTMLElement {
 
   /** Lifecycle methods */
@@ -102,24 +103,6 @@ class ComponentAnatomy extends window.HTMLElement {
     this._$list.appendChild($term);
   }
 
-  _processContent(content, parent) {
-    let node = document.createTextNode(content);
-    parent.appendChild(node);
-    [...content.matchAll(LINK_REGEX)].reduce((pointer, match) => {
-      const { length } = match[0];
-      node = node.splitText(match.index - pointer);
-      node = node.splitText(length);
-      return match.index + length;
-    }, 0);
-    [...parent.childNodes].forEach(n => {
-      const result = LINK_REGEX.exec(n.data);
-      if (!result) return;
-      const a = document.createElement('a');
-      Object.assign(a, result.groups);
-      n.parentNode.replaceChild(a, n);
-    });
-  }
-
   _createPin(style, index) {
     const $pin = document.createElement('li');
     Object.assign($pin.style, style);
@@ -138,6 +121,26 @@ class ComponentAnatomy extends window.HTMLElement {
 
   _mouseleave(index) {
     this._$pins.children[index].removeAttribute('aria-current');
+  }
+
+  _processContent(content, parent) {
+    let node = document.createTextNode(content);
+    parent.appendChild(node);
+
+    [...content.matchAll(LINK_REGEX)].reduce((pointer, match) => {
+      const { length } = match[0];
+      node = node.splitText(match.index - pointer);
+      node = node.splitText(length);
+      return match.index + length;
+    }, 0);
+
+    [...parent.childNodes].forEach(n => {
+      const result = LINK_REGEX.exec(n.data);
+      if (!result) return;
+      const a = document.createElement('a');
+      Object.assign(a, result.groups);
+      n.parentNode.replaceChild(a, n);
+    });
   }
   
   _render() {
