@@ -54,7 +54,7 @@ Once you've completed editing, remove the `edit` attribute and copy the resultin
 </component-anatomy>
 ```
 
-You can also hit the `Esc` key on your keyboard to exit out of edit mode. This will also copy the resulting HTML to your clipboard, assuming your browser supports `document.execCommand`. Otherwise, you've just need to view the resulting source code.
+You can also hit the `Esc` key on your keyboard to exit out of edit mode. This will also copy the resulting HTML to your clipboard, assuming your browser supports `document.execCommand`. Otherwise, you'll just need to view the resulting source code.
 ## Additional Features
 
 - The dots will scale down in size when the figure is hovered; reducing the visual obstruction they would cause at normal size.
