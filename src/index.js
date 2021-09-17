@@ -14,6 +14,7 @@ class ComponentAnatomy extends window.HTMLElement {
 
     this._$pins = this.shadowRoot.getElementById('pins');
     this._$list = this.shadowRoot.getElementById('list');
+    this._$copy = this.shadowRoot.getElementById('copy');
   }
 
   static get observedAttributes() { 
@@ -27,6 +28,7 @@ class ComponentAnatomy extends window.HTMLElement {
 
   connectedCallback() {
     this._$pins.addEventListener('click' , ev => this._click(ev));
+    this.addEventListener('keyup' , ev => this._esc(ev));
   }
 
   /** Public methods */
@@ -115,6 +117,14 @@ class ComponentAnatomy extends window.HTMLElement {
     [...this._$list.children].forEach(this._attributes, this);
   }
 
+  _esc(ev) {
+    if (ev.key === 'Escape' && this.edit) {
+      this.edit = false;
+      this._$copy.select();
+      typeof document.execCommand === 'function' && document.execCommand("copy");
+    }
+  }
+
   _mouseenter(index) {
     this._$pins.children[index].setAttribute('aria-current', '');
   }
@@ -141,6 +151,7 @@ class ComponentAnatomy extends window.HTMLElement {
   _render() {
     this._clear();
     this.definitions.forEach(this._create, this);
+    this._$copy.value = this.outerHTML;
   }
 
   /** Getters/Setters */

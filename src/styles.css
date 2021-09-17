@@ -88,3 +88,9 @@
 #list a {
   color: var(--component-anatomy--link-fg, currentColor);
 }
+
+#copy {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
