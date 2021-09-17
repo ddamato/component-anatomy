@@ -59,6 +59,7 @@ Once you've completed editing, remove the `edit` attribute and copy the resultin
 - The dots will scale down in size when the figure is hovered; reducing the visual obstruction they would cause at normal size.
 - You can hover any numbered list item to highlight the corresponding marker. This also occurs in edit mode.
 - If you clear the description entirely in edit mode, the marker will be removed.
+- You can [create links using markdown syntax](https://www.markdownguide.org/basic-syntax/#links) in the list items. After losing focus, the text will transform into a link. If you attempt to re-edit the link, it'll be lost. No other special formatting is included.
 
 ## Manipulating Definitions
 

@@ -1,5 +1,7 @@
 import html from './template.html';
 import css from './styles.css';
+
+const LINK_REGEX = /\[(?<textContent>[^\]]+)\]\((?<href>[^\)]+)\)/g;
 class ComponentAnatomy extends window.HTMLElement {
 
   /** Lifecycle methods */
@@ -89,7 +91,7 @@ class ComponentAnatomy extends window.HTMLElement {
 
   _createDescription(term, index) {
     const $term = document.createElement('li');
-    $term.textContent = term;
+    this._processContent(term, $term);
     this._attributes($term);
     $term.id = `item-${index}`;
 
@@ -98,6 +100,24 @@ class ComponentAnatomy extends window.HTMLElement {
     $term.addEventListener('blur', () => this._blur(index));
 
     this._$list.appendChild($term);
+  }
+
+  _processContent(content, parent) {
+    let node = document.createTextNode(content);
+    parent.appendChild(node);
+    [...content.matchAll(LINK_REGEX)].reduce((pointer, match) => {
+      const { length } = match[0];
+      node = node.splitText(match.index - pointer);
+      node = node.splitText(length);
+      return match.index + length;
+    }, 0);
+    [...parent.childNodes].forEach(n => {
+      const result = LINK_REGEX.exec(n.data);
+      if (!result) return;
+      const a = document.createElement('a');
+      Object.assign(a, result.groups);
+      n.parentNode.replaceChild(a, n);
+    });
   }
 
   _createPin(style, index) {

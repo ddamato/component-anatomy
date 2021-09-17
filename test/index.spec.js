@@ -88,5 +88,21 @@ describe('<component-anatomy/>', function () {
     expect(anatomy.definitions.length).to.equal(0);
     expect(anatomy.hasAttribute('definitions')).to.be.false;
   });
+
+  it('should create links using markdown', function () {
+    const term = 'Button text with [a link](#link) to a place';
+    anatomy.create({ x:'64%', y:'53%', term });
+    const link = anatomy.shadowRoot.querySelector('#list li a');
+    expect(link).to.exist;
+    expect(link.getAttribute('href')).to.equal('#link');
+    expect(link.textContent).to.equal('a link');
+  });
+
+  it('should not render html', function () {
+    const term = 'Button text with <strong>bold</strong> wording';
+    anatomy.create({ x:'64%', y:'53%', term });
+    const bold = anatomy.shadowRoot.querySelector('#list li strong');
+    expect(bold).to.not.exist;
+  });
 });
 
