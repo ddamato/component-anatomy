@@ -1,13 +1,25 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Example page</title>
+    <title>&lt;component-anatomy&gt; example page</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
     <style>
-      :root { --component-anatomy--pin-bg: purple; --component-anatomy--pin-hl: yellow; }
-      body { font-family: Prompt, sans-serif; font-size: 1.5rem; }
+      :root { 
+        
+      }
+
+      body { 
+        font-family: Prompt, sans-serif; 
+        font-size: 1.5rem; 
+        color: black;
+      }
+
+      a { color: inherit !important; }
+
+      p { max-width: 900px; margin: 1em auto}
+
       h1 { text-align: center; }
       section { 
         max-width: 900px;
@@ -24,6 +36,7 @@
     <h1>
       <a href="https://github.com/ddamato/component-anatomy">&lt;component-anatomy/&gt;</a>
     </h1>
+    <p>A native web-component which can identify parts of a figure; expected to be used in documentation pages to name pieces of a component.</p>
     <section>
       <h2>Use with an image (edit off)</h2>
       <component-anatomy definitions="W3sieCI6IjIwJSIsInkiOiIyNSUiLCJ0ZXJtIjoiVG9wIGxlZnQifSx7IngiOiI3MSUiLCJ5IjoiNTYlIiwidGVybSI6IkJvdHRvbSByaWdodCJ9XQ==">
@@ -37,6 +50,13 @@
         <div style="padding: 2rem">
           <button type="button">Click me</button>
         </div>
+      </component-anatomy>
+    </section>
+
+    <section>
+      <h2>Use with a link (edit off)</h2>
+      <component-anatomy definitions="W3sieCI6IjIwJSIsInkiOiIyNSUiLCJ0ZXJtIjoiSGVyZSBpcyBhIFtsaW5rIHRvIHNvbWV3aGVyZV0oI3NvbWV3aGVyZSkifSx7IngiOiI3MSUiLCJ5IjoiNTYlIiwidGVybSI6IltKdXN0IGEgbGlua10oI2xpbmspIn1d">
+        <img src="https://picsum.photos/500/300"/>
       </component-anatomy>
     </section>
 

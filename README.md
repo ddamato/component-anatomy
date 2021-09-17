@@ -128,3 +128,4 @@ The text color for the numbered list items is also inherited. Marker colors can 
 | `--component-anatomy--pin-bg` | Background of the marker |
 | `--component-anatomy--pin-fg` | Foreground of the marker |
 | `--component-anatomy--pin-hl` | Border that appears when list item is hovered |
+| `--component-anatomy--link-fg` | Foreground of links in the list |
