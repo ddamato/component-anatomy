@@ -1,5 +1,7 @@
 # [`<component-anatomy/>`](https://ddamato.github.io/component-anatomy/)
 
+[![npm version](https://img.shields.io/npm/v/component-anatomy.svg)](https://www.npmjs.com/package/component-anatomy)
+
 A native web-component which can identify parts of a figure; expected to be used in documentation pages to name pieces of a component.
 
 ## Install
