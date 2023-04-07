@@ -7,7 +7,7 @@
 }
 
 #component-anatomy {
-  display: inline-flex;
+  display: flex;
 }
 
 :host([orientation='vertical']) #component-anatomy {
