@@ -12,6 +12,7 @@
     "build": "rollup src/index.js --file dist/index.iife.js --format iife -p html -p 'postcss={ inject: false }' -p terser",
     "dev": "watch-exec -w src/ -c 'npm run build'",
     "test": "npm run build && mocha",
+    "prepublishOnly": "npm run build",
     "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "repository": {
